@@ -1,20 +1,16 @@
-import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { isTemplateExpression } from "typescript";
+import { memo, useCallback, useRef, useState } from "react";
 import { Result } from "../../types";
-import { AutoCompleteItem } from "./auto-complete-item";
 import { Popover } from "./popover/popover";
 import * as S from "./styled";
 
 interface AutoCompleteProps {
-  onInputChanged: (value: string) => void;
-  onDisplayResults: () => void;
+  onInputChanged: (value: string, updateSearchResults?: boolean) => void;
   autoCompleteResults: Result[];
 }
 
 export function AutoCompleteInput({
   autoCompleteResults,
   onInputChanged,
-  onDisplayResults,
 }: AutoCompleteProps) {
   const [isPopoverOpen, setisPopoverOpen] = useState(false);
   const [inputText, setInputText] = useState("");
@@ -23,36 +19,29 @@ export function AutoCompleteInput({
     [key: string]: boolean;
   }>({});
 
-  const updateTextAndResults = useCallback(
-    (value: string) => {
-      setInputText(value);
-      onInputChanged(value);
-    },
-    [onInputChanged]
-  );
-
   const handleInputChanged = (event: any) => {
-    updateTextAndResults(event.target.value);
+    setInputText(event.target.value);
+    onInputChanged(event.target.value);
   };
 
   const handleKeyDown = (event: any) => {
     if (event.key === "Enter") {
-      onDisplayResults();
+      onInputChanged(inputText, true);
       inputRef?.current?.blur();
     }
   };
 
   const handleResultItemClicked = useCallback(
     (item: Result) => {
-      updateTextAndResults(item.title);
-      onDisplayResults();
+      setInputText(item.title);
+      onInputChanged(item.title, true);
 
       setHistoryHashMap((oldMap) => ({
         ...oldMap,
         [item.url]: true,
       }));
     },
-    [onDisplayResults, updateTextAndResults]
+    [onInputChanged]
   );
 
   const handleRemoveClick = useCallback((item: Result) => {

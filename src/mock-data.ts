@@ -48,22 +48,22 @@ export const mockData: Result[] = [
   },
   {
     title: "React - W3schools 3",
-    description: "This will teach you the basics of React2",
-    url: "https://www.w3schools.com/whatis/whatis_react.asp2",
+    description: "This will teach you the basics of React3",
+    url: "https://www.w3schools.com/whatis/whatis_react.asp3",
   },
   {
     title: "React - W3schools 4",
-    description: "This will teach you the basics of React2",
-    url: "https://www.w3schools.com/whatis/whatis_react.asp2",
+    description: "This will teach you the basics of React4",
+    url: "https://www.w3schools.com/whatis/whatis_react.asp4",
   },
   {
     title: "React - W3schools 5",
-    description: "This will teach you the basics of React2",
-    url: "https://www.w3schools.com/whatis/whatis_react.asp2",
+    description: "This will teach you the basics of React5",
+    url: "https://www.w3schools.com/whatis/whatis_react.asp5",
   },
   {
     title: "React - W3schools 6",
-    description: "This will teach you the basics of React2",
-    url: "https://www.w3schools.com/whatis/whatis_react.asp2",
+    description: "This will teach you the basics of React6",
+    url: "https://www.w3schools.com/whatis/whatis_react.asp6",
   },
 ];

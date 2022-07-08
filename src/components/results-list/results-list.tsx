@@ -42,7 +42,7 @@ export function ResultsList({ results, pageSize = 3 }: ResultsListProps) {
     return Math.ceil(results.length / pageSize);
   }, [pageSize, results.length]);
 
-  const ResultListMemo = memo(() => (
+  const ResultItemsMemo = memo(() => (
     <Container>
       <TotalResults>{`${results.length} results (took 0ms)`}</TotalResults>
       {paginatedResults.map((resultItem) => (
@@ -65,5 +65,5 @@ export function ResultsList({ results, pageSize = 3 }: ResultsListProps) {
     </Container>
   ));
 
-  return <ResultListMemo />;
+  return <ResultItemsMemo />;
 }

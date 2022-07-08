@@ -15,12 +15,8 @@ const Container = styled.div({
 });
 
 function App() {
-  const {
-    autoCompleteResults,
-    handleAutoCompleteInputChanged,
-    searchResults,
-    handleDisplayResults,
-  } = useAutoComplete(mockData);
+  const { autoCompleteResults, handleAutoCompleteInputChanged, searchResults } =
+    useAutoComplete(mockData);
 
   return (
     <Container>
@@ -28,7 +24,6 @@ function App() {
       <AutoCompleteInput
         autoCompleteResults={autoCompleteResults}
         onInputChanged={handleAutoCompleteInputChanged}
-        onDisplayResults={handleDisplayResults}
       />
       {searchResults.length > 0 ? (
         <ResultsList results={searchResults} />

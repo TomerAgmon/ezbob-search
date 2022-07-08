@@ -6,8 +6,8 @@ export function useAutoComplete(mockData: Result[], maxResults = 10) {
   const [searchResults, setSearchResults] = useState<Result[]>([]);
 
   const handleAutoCompleteInputChanged = useCallback(
-    (value: string) => {
-      setAutoCompleteResults(
+    (value: string, updateSearchResults = false) => {
+      const updatedAutoCompleteResults =
         value === ""
           ? []
           : mockData
@@ -16,19 +16,19 @@ export function useAutoComplete(mockData: Result[], maxResults = 10) {
                   .toLowerCase()
                   .startsWith(value.toLowerCase().trim())
               )
-              .slice(0, maxResults)
-      );
+              .slice(0, maxResults);
+
+      setAutoCompleteResults(updatedAutoCompleteResults);
+
+      if (updateSearchResults) {
+        setSearchResults(updatedAutoCompleteResults);
+      }
     },
     [maxResults, mockData]
   );
 
-  const handleDisplayResults = useCallback(() => {
-    setSearchResults(autoCompleteResults);
-  }, [autoCompleteResults]);
-
   return {
     handleAutoCompleteInputChanged,
-    handleDisplayResults,
     autoCompleteResults,
     searchResults,
   };

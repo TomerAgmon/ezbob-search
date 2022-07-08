@@ -13,7 +13,7 @@ export interface AutoCompleteItemProps {
 
 const StyledItem = styled.div`
   display: flex;
-  padding: 7px;
+  padding: 7px 7px 7px 22px;
   &:hover {
     cursor: pointer;
     background-color: #f2f2f2;
